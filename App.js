@@ -8,7 +8,6 @@ import Navbar from "./Components/Navbar";
 
 
 export default function App() {
-  const [text, setText ]= useState("Hello World!!")
   return (
       <View >     
           <Navbar></Navbar>               
