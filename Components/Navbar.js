@@ -1,17 +1,22 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { ProfileScreen } from './ProfileScreen';
-import {HomeScreen} from './HomeScreen'
+import LatestMovies from "./LatestMovies";
+import MovieDetail from "./MovieDetail";
+import TicketBookingDetail from "./TicketBookingDetail";
 
 const Stack = createStackNavigator();
 
-export default function Navbar() {
+function Navbar() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={LatestMovies} options={{ title: 'Latest Movies' }}/>
+        <Stack.Screen name="MovieDetail" component={MovieDetail} options={{ title: 'Movie Detail' }}/>
+        <Stack.Screen name="TicketBookingDetail" component={TicketBookingDetail} options={{ title: 'Ticket Booking' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+export default Navbar;

@@ -1,7 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React,{ useState} from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import List from './Components/LatestMovies';
+import { StyleSheet } from 'react-native';
 import {Provider} from 'react-redux'
 import store  from './Store'
 import Navbar from "./Components/Navbar";
@@ -9,9 +7,10 @@ import Navbar from "./Components/Navbar";
 
 export default function App() {
   return (
-      <View >     
-          <Navbar></Navbar>               
-       </View>
+          <Provider store={store}>
+            <Navbar></Navbar>
+          </Provider>
+  
   );
 }
 

@@ -1,31 +1,31 @@
 import React,{useEffect} from 'react'
-import { ScrollView, View,Text,Image,StyleSheet } from 'react-native'
-import data from '../JSON/native.json'
+import { ScrollView, View,Text,Image,StyleSheet,Button } from 'react-native'
 import { connect } from 'react-redux'
-import {fetchProducts} from '../Actions/ProductActions'
+import {fetchLatestMovies} from '../Actions/LatestMoviesActions'
 
- function List({productsData,fetchProducts}) {
+ function List({latestMoviesData,fetchLatestMovies}) {
    useEffect(()=>{
-       fetchProducts()
+       fetchLatestMovies()
    },[])
 
-   return productsData.loading ?(
+   return latestMoviesData.loading ?(
        <Text>Loading...</Text>
-       ): productsData.error ? (
+       ): latestMoviesData.error ? (
            <Text>Error...</Text>
        ): (    
         <ScrollView>
             <View>
               {
-                productsData && productsData.preducer && productsData.preducer.items &&  
-                productsData.preducer.items.map((item,key)=>{
+                latestMoviesData && latestMoviesData.latestMoviesPreducer && latestMoviesData.latestMoviesPreducer.items &&  
+                latestMoviesData.latestMoviesPreducer.items.map((item,key)=>{
                     return (
                         <View styles={styles.listItem}key={key}>
-                       
-                        <Image source={{uri:item.image}} style={styles.placeImage}/>
+                        <Image source={{uri:item.imageUrl}} style={styles.placeImage}/>
                         <Text styles={styles.textval}>
                             {item.name}
                         </Text>
+                        <Text>Details Screen</Text>
+                        <Button title="Details"/>
                         </View>
                     )
 
@@ -39,14 +39,14 @@ import {fetchProducts} from '../Actions/ProductActions'
 
 const mapStateToProps = (state) =>
   ({
-    productsData:state
+    latestMoviesData:state
     
 })
 
 
 const mapDispatchToProps = disptach=> {
   return {
-      fetchProducts:()=>disptach(fetchProducts())
+    fetchLatestMovies:()=>disptach(fetchLatestMovies())
   }   
 }
 

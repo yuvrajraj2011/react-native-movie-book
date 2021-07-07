@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
-import preducer from './ProductReducer'
+import latestMoviesPreducer from './LatestMoviesReducer'
 
 const rootReducer= combineReducers({
-    preducer
+    latestMoviesPreducer
 
 })
 

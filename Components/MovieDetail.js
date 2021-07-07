@@ -1,58 +1,44 @@
-import React,{useEffect} from 'react'
-import { ScrollView, View,Text,Image,StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
-import {fetchProducts} from '../Actions/ProductActions'
+import React,{useEffect, useState} from 'react'
+import { View, Text, StyleSheet, Image, Button} from "react-native";
+import axios from "axios";
 
- function MovieDetail({productsData,fetchProducts}) {
-   useEffect(()=>{
-       fetchProducts()
-   },[])
-
-   return productsData.loading ?(
-       <Text>Loading...</Text>
-       ): productsData.error ? (
-           <Text>Error...</Text>
-       ): (    
-        <ScrollView>
-            <View>
-              {
-                productsData && productsData.preducer && productsData.preducer.items &&  
-                productsData.preducer.items.map((item,key)=>{
-                    if(item.category=="vegan")
-                    return (
-                        <View styles={styles.listItem}key={key}>
-                       
-                        <Image source={{uri:item.image_url}} style={styles.placeImage}/>
-                        <Text styles={styles.textval}>
-                            {item.name}
-                        </Text>
-                        </View>
-                    )
-
-                })
-              }
-            </View>
-       </ScrollView>
-    )
-}
-
-
-const mapStateToProps = (state) =>
-  ({
-    productsData:state
+function MovieDetail({ route, navigation }) {
+      /* 2. Get the param */
+    const { _id } = route.params;
+    const [item, setMovie] = useState([]);
+    useEffect(() => {
+    axios
+      .get(`http://3.17.216.66:4000/latest/${_id}`)
+      .then((response) => response.data)
+      .then((json) => {
+        setMovie(json);
+        
+      })
+      .catch((error) => console.error(error));
+    }, [item]
     
-})
-
-
-const mapDispatchToProps = disptach=> {
-  return {
-      fetchProducts:()=>disptach(fetchProducts())
-  }   
+    );
+    
+    return (
+       
+        <View styles={styles.listItem}key={item._id}>
+        <Image source={{uri:item.imageUrl}} style={styles.placeImage}/>
+        <Text styles={styles.textval}>Name: {item.name} </Text>
+        <Text styles={styles.textval}>Language: {item.language} </Text>
+        <Text styles={styles.textval}>Rate: {item.rate} </Text>
+        <Text styles={styles.textval}>Type: {item.type} </Text>
+        <Button title="Book Now" onPress={() => navigation.navigate('TicketBookingDetail', {
+            _id:item._id,
+            name:item.name,
+            language: item.language,
+            rate: item.rate,
+            type:item.type
+        })}/>  
+        </View>
+      );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail)
-
-
+export default MovieDetail;
 
 const styles = StyleSheet.create({
     listContainer:{
