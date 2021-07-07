@@ -18,7 +18,9 @@ function MovieDetail({ route, navigation }) {
     }, [item]
     
     );
-    
+    const Separator = () => (
+      <View style={styles.separator} />
+    );
     return (
        
         <View styles={styles.listItem}key={item._id}>
@@ -27,6 +29,7 @@ function MovieDetail({ route, navigation }) {
         <Text styles={styles.textval}>Language: {item.language} </Text>
         <Text styles={styles.textval}>Rate: {item.rate} </Text>
         <Text styles={styles.textval}>Type: {item.type} </Text>
+        <Separator />
         <Button title="Book Now" onPress={() => navigation.navigate('TicketBookingDetail', {
             _id:item._id,
             name:item.name,

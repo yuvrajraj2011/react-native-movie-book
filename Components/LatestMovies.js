@@ -9,6 +9,10 @@ import {fetchLatestMovies} from '../Actions/LatestMoviesActions'
        fetchLatestMovies()
    },[])
 
+   const Separator = () => (
+    <View style={styles.separator} />
+  );
+
    return latestMoviesData.loading ?(
        <Text>Loading...</Text>
        ): latestMoviesData.error ? (
@@ -27,9 +31,10 @@ import {fetchLatestMovies} from '../Actions/LatestMoviesActions'
                         <Text styles={styles.textval}>
                             {item.name}
                         </Text>
-                        <Button title="Details" onPress={() => navigation.navigate('MovieDetail', {
+                        <Button title="Details" color="#841584" onPress={() => navigation.navigate('MovieDetail', {
                             _id:item._id
                         })}/>  
+                        <Separator />
                         </View>
                     )
 
@@ -77,5 +82,16 @@ const styles = StyleSheet.create({
     textval:{
         textAlign:'center',
         fontSize:30
-    }
+    },
+    separator: {
+        marginVertical: 8,
+        borderBottomColor: '#737373',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+      },
+      container: {
+        flex: 1,
+        justifyContent: 'center',
+        marginHorizontal: 16,
+      },
+      
 })
