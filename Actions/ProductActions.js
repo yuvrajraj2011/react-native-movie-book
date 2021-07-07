@@ -22,7 +22,11 @@ export const fetchProductsBegin = () => ({
    console.log("in fetchproducts!!")
    return dispatch=>{
      dispatch(fetchProductsBegin());
+<<<<<<< HEAD
     return axios.get('http://3.17.216.66:4000/latest')
+=======
+    return axios.get('http://localhost:6700/restaurants')
+>>>>>>> 16e1c2d0ca996b2335e1f97fb3ae8be00e470895
      .then(resp=>{
        const products= resp.data;
        dispatch(fetchProductsSuccess(products))
