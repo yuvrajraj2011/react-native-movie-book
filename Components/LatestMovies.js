@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { ScrollView, View,Text,Image,StyleSheet, Button } from 'react-native'
+import { ScrollView, View,Text,Image,StyleSheet, Button,TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import {fetchLatestMovies} from '../Actions/LatestMoviesActions'
 
@@ -31,9 +31,14 @@ import {fetchLatestMovies} from '../Actions/LatestMoviesActions'
                         <Text styles={styles.textval}>
                             {item.name}
                         </Text>
-                        <Button title="Details" color="#841584" onPress={() => navigation.navigate('MovieDetail', {
-                            _id:item._id
-                        })}/>  
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => navigation.navigate('MovieDetail', {
+                                _id:item._id
+                            })}>
+                            <Text>Details</Text>
+                        </TouchableOpacity>
+                        
                         <Separator />
                         </View>
                     )
@@ -93,5 +98,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginHorizontal: 16,
       },
-      
+      button: {
+        alignItems: "center",
+        backgroundColor: "#DDDDDD",
+        padding: 10
+      },
 })

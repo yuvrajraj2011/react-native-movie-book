@@ -6,6 +6,9 @@ function TicketBookingDetail({ route, navigation }) {
       /* 2. Get the param */
     const { _id, name, rate, type, language  } = route.params;
     const [isSuccess, setSuccess] = useState(false);
+    const Separator = () => (
+        <View style={styles.separator} />
+      );
     return (
        
         <View styles={styles.listItem}key={_id}>
@@ -13,7 +16,7 @@ function TicketBookingDetail({ route, navigation }) {
         <Text styles={styles.textval}>Language: {language} </Text>
         <Text styles={styles.textval}>Rate: {rate} </Text>
         <Text styles={styles.textval}>Type: {type} </Text>
-       
+        <Separator />
         {
             !isSuccess && (
                 <Button title="Submit" onPress={() => {
@@ -56,5 +59,10 @@ const styles = StyleSheet.create({
     textval:{
         textAlign:'center',
         fontSize:30
-    }
+    },
+    separator: {
+        marginVertical: 8,
+        borderBottomColor: '#737373',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+      },
 })

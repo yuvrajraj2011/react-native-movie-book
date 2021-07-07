@@ -62,5 +62,10 @@ const styles = StyleSheet.create({
     textval:{
         textAlign:'center',
         fontSize:30
-    }
+    },
+    separator: {
+      marginVertical: 8,
+      borderBottomColor: '#737373',
+      borderBottomWidth: StyleSheet.hairlineWidth,
+    },
 })
