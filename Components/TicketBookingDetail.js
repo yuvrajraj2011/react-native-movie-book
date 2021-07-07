@@ -18,7 +18,7 @@ function TicketBookingDetail({ route, navigation }) {
             !isSuccess && (
                 <Button title="Submit" onPress={() => {
                     setSuccess(true);
-                    Alert.alert('Booking confirmation", "Congratulations, you have successfully booked the ticket");
+                    Alert.alert("Booking confirmation", "Congratulations, you have successfully booked the ticket");
               }}/>  
             )
         }
