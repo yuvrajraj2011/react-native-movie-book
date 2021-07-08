@@ -12,7 +12,6 @@ function MovieDetail({ route, navigation }) {
       .then((response) => response.data)
       .then((json) => {
         setMovie(json);
-        
       })
       .catch((error) => console.error(error));
     }, [item]
